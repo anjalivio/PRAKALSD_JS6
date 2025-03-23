@@ -1,0 +1,63 @@
+import java.util.Scanner;
+public class DosenMain04 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        DataDosen04 list = new DataDosen04();
+        int pilih;
+
+        do {
+            System.out.println("Menu : ");
+            System.out.println("1. Tambah Data Dosen");
+            System.out.println("2. Tampil Data Dosen");
+            System.out.println("3. Sorting ASC (Muda ke Tua)");
+            System.out.println("4. Sorting DSC (Tua ke Muda)");
+            System.out.println("5. Sorting DSC pakai Insertion Sort");
+            System.out.println("6. Exit");
+            System.out.print("Pilih : ");
+            pilih = sc.nextInt();
+            sc.nextLine();
+
+            switch (pilih) {
+                case 1:
+                    System.out.print("Kode : ");
+                    String kode = sc.nextLine();                   
+                    System.out.print("Nama : ");
+                    String nama = sc.nextLine();
+                    System.out.print("Jenis Kelamin (L/P) : ");
+                    char jk = sc.next().charAt(0);
+                    boolean jenisKelamin = (jk == 'L' || jk == 'l');
+                    System.out.print("Usia : ");
+                    int usia = sc.nextInt();
+
+                    Dosen04 dsn = new Dosen04(kode, nama, jenisKelamin, usia);
+                    list.tambah(dsn);
+                    break;
+                case 2:
+                    System.out.println("Data Dosen : ");
+                    list.tampil();
+                    break;
+                case 3:
+                    list.SortingASC();
+                    System.out.println("Data setelah Bubble Sort ASC : ");
+                    list.tampil();
+                    break;
+                case 4:
+                    list.SortingDCS();
+                    System.out.println("Data setelah Selection Sort DSC : ");
+                    list.tampil();
+                    break;
+                case 5: 
+                    list.insertionSort();
+                    System.out.println("Data setelah Insertion Sort DSC : ");
+                    list.tampil();
+                    break;
+                case 6:
+                    System.out.println("Keluar Program");
+                    break;
+                default:
+                    System.out.println("Pilihan Tidak Valid!!");
+                    break;
+            }
+        } while (pilih != 6);
+    }
+}
